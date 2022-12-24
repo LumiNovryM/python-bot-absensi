@@ -5,5 +5,5 @@ db = mysql.connector.connect(
     host = 'localhost',
     user = 'root',
     password = '',
-    database = 'db_coba'
+    database = 'db_absensi'
 )

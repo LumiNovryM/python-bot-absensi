@@ -13,7 +13,7 @@ sql = db.cursor()
 @Adminbot.message_handler(commands=['start'])
 def start(message):
     Adminbot.send_chat_action(message.chat.id, 'typing')
-    if(message.chat.id == 1789786126):
+    if(message.chat.id == 1789786125):
         Server.runXampp()
         Adminbot.reply_to(message, "Starting Apache...\nStarting MySQL...\nBot Sudah Terkoneksi Ke Server & Database")
     else :
@@ -32,8 +32,12 @@ def stop(message):
 # Start Pino Bot
 @Adminbot.message_handler(commands=['start-pino'])
 def start_pino(message):
-    Server.runPino()
-    Adminbot.send_message(message, "Pino Bot Start")
+    Adminbot.send_chat_action(message.chat.id, 'typing')
+    if(message.chat.id == 1789786125):
+        Adminbot.reply_to(message, "Pino Bot Start\nKunjungi @starbhak_pino_bot")
+        Server.runPino()
+    else :
+        Adminbot.reply_to(message, "Command Ini Hanya Untuk Developer\nDeveloper Saya Adalah @lumi_novry")
 
 # Profile
 @Adminbot.message_handler(commands=['profile'])
@@ -46,7 +50,7 @@ def profile(message):
 @Adminbot.message_handler(commands=['daftar'])
 def daftar(message):
     user_id = message.chat.id
-    sql.execute("SELECT chat_id FROM admin WHERE chat_id = {}".format(user_id))
+    sql.execute("SELECT chat_id FROM bot_admins WHERE chat_id = {}".format(user_id))
     result = sql.fetchone()
     print(result)
     if(result):
@@ -64,7 +68,7 @@ def daftar(message):
         tanggal = datetime.now()
         tanggal = tanggal.strftime("%d/%m/%y, %H:%M:%S")
         # Setup Query
-        insert = "INSERT INTO admin(chat_id, nama, email, status, tanggal) VALUES(%s,%s,%s,%s,%s)"
+        insert = "INSERT INTO bot_admins(chat_id, nama, email, status, tanggal) VALUES(%s,%s,%s,%s,%s)"
         val = (chat_id, nama, email, status, tanggal)
         sql.execute(insert, val)
         db.commit()
@@ -73,14 +77,14 @@ def daftar(message):
 # List Admin
 @Adminbot.message_handler(commands=['list-admin'])
 def list_admin(message):
-    sql.execute("SELECT * FROM admin")
+    sql.execute("SELECT * FROM bot_admins")
     result = sql.fetchall()
     print(result)
     final = ''
     for data in range (len(result)):
                 final = final + str(data+1) + '.)' + 'ID Telegram : ' + str(result[data][0]) + '\n     ' + 'Nama : ' + str(result[data][1]) + '\n     ' + 'E-Mail : ' + str(result[data][2]) + '\n     ' + 'Status : ' + str(result[data][3]) + '\n     ' + 'Tanggal Pendaftaran : ' + str(result[data][4]) + '\n' + '\n'
     print(final)
-    Adminbot.reply_to(message, "Berikut Adalah List Admin Pino Bot :\n\n" + final)
+    Adminbot.reply_to(message, "Berikut Adalah List Admin Yang Terdaftar Di Pino Bot :\n\n" + final)
 
 # Keep Update
 Adminbot.polling()

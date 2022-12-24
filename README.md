@@ -37,4 +37,46 @@ Berikut adalah Command Dari Admin Bot
 ```sh
 /list-admin
 ```
+<br>
+<hr>
+<hr>
+<hr>
+
+### Pino Bot 
+`Pino Bot` adalah `bot` yang akan membantu kegiatan layanan informasi `SMK Taruna Bhakti`
+
+Berikut adalah Command Dari Admin Bot
+
+1.Start : Perintah /start berguna untuk memulai bot 
+```sh 
+/start
+```
+
+<br>
+
+2.List-Kelas : Perintah /list-kelas adalah perintah yang digunakan untuk menampilkan `list-kelas` terdaftar di `SMK Taruna Bhakti`
+```sh
+/list-kelas
+```
+
+<br>
+
+3.List-Guru : Perintah /list-guru adalah perintah yang digunakan untuk menampilkan `list-guru` yang mengajar di `SMK Taruna Bhakti`
+```sh 
+/list-guru
+```
+
+<br>
+
+4.Check-Absensi : Perintah /check-absensi adalah perintah yang digunakan untuk menampilakan absensi kelas berdasarkan 3 `parameter` : `kelas`, `mata-pelajaran`, `tanggal` 
+```sh
+/check-absensi XI-PPLG-1 Basis-Data 2022-12-24
+```
+
+<br>
+
+5.Check-Absensi-Alpha : Perintah /check-absensi adalah perintah yang digunakan untuk menampilkan abseni kelas yang berstatus `Alpha` berdasarkan 3 `parameter` : `kelas`, `mata-pelajaran`, `tanggal` 
+```sh
+/check-absensi-alpha XI-PPLG-1 Basis-Data 2022-12-24
+```
 
