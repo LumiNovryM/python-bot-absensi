@@ -13,7 +13,7 @@ sql = db.cursor()
 @Adminbot.message_handler(commands=['start'])
 def start(message):
     Adminbot.send_chat_action(message.chat.id, 'typing')
-    if(message.chat.id == 1789786125):
+    if(message.chat.id == 1789786126):
         Server.runXampp()
         Adminbot.reply_to(message, "Starting Apache...\nStarting MySQL...\nBot Sudah Terkoneksi Ke Server & Database")
     else :
@@ -70,6 +70,17 @@ def daftar(message):
         db.commit()
         Adminbot.reply_to(message, "Pendaftaran Berhasil\nSekarang Anda Adalah Admin")
 
+# List Admin
+@Adminbot.message_handler(commands=['list-admin'])
+def list_admin(message):
+    sql.execute("SELECT * FROM admin")
+    result = sql.fetchall()
+    print(result)
+    final = ''
+    for data in range (len(result)):
+                final = final + str(data+1) + '.)' + 'ID Telegram : ' + str(result[data][0]) + '\n     ' + 'Nama : ' + str(result[data][1]) + '\n     ' + 'E-Mail : ' + str(result[data][2]) + '\n     ' + 'Status : ' + str(result[data][3]) + '\n     ' + 'Tanggal Pendaftaran : ' + str(result[data][4]) + '\n' + '\n'
+    print(final)
+    Adminbot.reply_to(message, "Berikut Adalah List Admin Pino Bot :\n\n" + final)
 
 # Keep Update
 Adminbot.polling()
